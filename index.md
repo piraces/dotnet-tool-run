@@ -1,37 +1,66 @@
-## Welcome to GitHub Pages
+# dotnet-tool-run
 
-You can use the [editor on GitHub](https://github.com/piraces/dotnet-tool-run/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+![.NET Tool Release](https://github.com/piraces/dotnet-tool-run/workflows/.NET%20Tool%20Release/badge.svg)
+![Nuget](https://img.shields.io/nuget/v/dotnet-tool-run)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+A simple .NET tool to execute other dotnet tools without installing them globally or in a project (a similar approach to [npx](https://www.npmjs.com/package/npx) from [npm](https://www.npmjs.com/)).
 
-### Markdown
+[**View in Nuget.org**](https://www.nuget.org/packages/dotnet-tool-run/)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## About
 
-```markdown
-Syntax highlighted code block
+This simple tool provides the minimum necessary to run dotnet tools without the need of installing them globally or in a project, since this is not yet supported in dotnet cli.
 
-# Header 1
-## Header 2
-### Header 3
+### Features:
+- **Cache**. This tool provides caching of used tools in a temporary directory (for better performance).
 
-- Bulleted
-- List
+- **Version and framework selection**. You can specify whatever version you want and the target framework to use in every run.
 
-1. Numbered
-2. List
+- **SourceLink for debugging**. The binaries can be debbuged with [Source Link](https://github.com/dotnet/sourcelink). Example (with Developer Command Prompt for VS): `devenv /debugexe c:\Users\rich\.dotnet\tools\dotnet-tool-run.exe`
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
+
+## Usage
+```
+dotnet-tool-run [options] <TOOL> [<TOOL-ARGS>...]
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Where the arguments and options are the following:
+```
+Arguments:
+  <TOOL>         The NuGet Package Id of the tool to execute
+  <TOOL-ARGS>    Arguments to pass to the tool to execute
 
-### Jekyll Themes
+Options:
+  -v, --version <version>        Version of the tool to use
+  -f, --framework <framework>    Target framework for the tool
+  -?, -h, --help                 Show help and usage information
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/piraces/dotnet-tool-run/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+This same output can be obtained running the tool with the help option:
+```
+dotnet-tool-run -h
+```
 
-### Support or Contact
+Example with the simple `dotnetsay` tool:
+```
+dotnet-tool-run dotnetsay Hello World!!
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Installation
+
+Install the [dotnet cli](https://dotnet.microsoft.com/download) (included in the .NET SDK) and then run the following command:
+
+```
+dotnet tool install -g dotnet-tool-run
+```
+
+## Contributions
+
+Feel free to open an issue or a PR if you want to without any problem :)
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+See the `LICENSE` file in the root of this repository.
