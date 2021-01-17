@@ -34,6 +34,7 @@ Arguments:
 Options:
   -v, --version <version>        Version of the tool to use
   -f, --framework <framework>    Target framework for the tool
+  -r, --remove-cache             Flag to remove the local cache before running the tool (can be run without tool)
   -?, -h, --help                 Show help and usage information
 ```
 
